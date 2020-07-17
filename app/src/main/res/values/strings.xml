@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Daystar Fleet</string>
+
+    <string-array name="list_items">
+        <item>KCB123K,Van,James Ben</item>
+        <item>KCB153Q,Truck,James Bond</item>
+        <item>KCB128M,Bus,Cliff Alpha</item>
+        <item>KCB125M,Bus,Fena Alpha</item>
+        <item>KCB129M,Bus,Mic Kim</item>
+
+
+    </string-array>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.cliffdevops.alpha.dufleet">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/dfs_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Manager.OilsActivity"
+            android:parentActivityName=".Manager.DashboardActivity"/>
+        <activity android:name=".Manager.TodoActivity" />
+        <activity android:name=".Manager.RevenueActivity" />
+        <activity android:name=".Manager.BookingActivity" />
+        <activity android:name=".Manager.FleetActivity" />
+        <activity android:name=".Manager.SubContractsActivity" />
+        <activity android:name=".Manager.StaffActivity" />
+        <activity android:name=".Manager.ReportsActivity" />
+        <activity android:name=".Common.AdminActivity" />
+        <activity android:name=".Manager.Maintenance" />
+        <activity android:name=".Common.HelpActivity" />
+        <activity android:name=".Common.AboutActivity" />
+        <activity android:name=".Common.ProfileActivity" />
+        <activity android:name=".Reception.ReceptionActivity" />
+        <activity android:name=".Manager.DashboardActivity" />
+        <activity android:name=".Conductor.ConductorActivity" />
+        <activity android:name=".Driver.DriverActivity" />
+        <activity android:name=".Common.LoginActivity" />
+        <activity
+            android:name=".Common.Splashscreen"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
