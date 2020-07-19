@@ -109,7 +109,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
                     <EditText
-                        android:id="@+id/txtEmail"
+                        android:id="@+id/txtUsernameEmail"
                         android:layout_width="350dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -129,7 +129,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Mobile"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+                        app:layout_constraintTop_toBottomOf="@+id/txtUsernameEmail" />
 
                     <EditText
                         android:id="@+id/txtMobile"

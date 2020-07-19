@@ -47,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         ImageView back = findViewById(R.id.btnBack);
         EditText user_name = findViewById(R.id.txtName);
-        EditText user_email = findViewById(R.id.txtEmail);
+        EditText user_email = findViewById(R.id.txtUsernameEmail);
         EditText user_mobile = findViewById(R.id.txtMobile);
         oldPassword = findViewById(R.id.txtOldPassword);
         newPassword = findViewById(R.id.txtNewPassword);
