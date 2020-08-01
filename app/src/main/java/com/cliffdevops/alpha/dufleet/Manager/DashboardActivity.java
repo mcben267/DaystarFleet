@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +27,7 @@ import java.util.Objects;
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SharedPreferences pref;
+    private TextView currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,14 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         pref = getSharedPreferences("login", MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        currentUser = findViewById(R.id.txtUser);
+
         this.setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(this.getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        currentUser.setText("Welcome " + pref.getString("user", "Null"));
 
         //defining Card view Buttons
         CardView btnHome1 = findViewById(R.id.btnHome1);
@@ -64,6 +69,12 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         updateDutyList();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        System.exit(0);
     }
 
     @Override
@@ -166,11 +177,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 break;
         }
 
-    }
-
-    public void showToast() {
-        Toast.makeText(DashboardActivity.this,
-                "TODO", Toast.LENGTH_SHORT).show();
     }
 
     public void updateDutyList() {

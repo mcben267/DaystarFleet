@@ -15,13 +15,14 @@ import com.cliffdevops.alpha.dufleet.Manager.DashboardActivity;
 import com.cliffdevops.alpha.dufleet.R;
 import com.cliffdevops.alpha.dufleet.Reception.ReceptionActivity;
 
-public class AboutActivity extends AppCompatActivity {
+public class ParcelActivity extends AppCompatActivity {
+
     private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_parcel);
         pref = getSharedPreferences("login", MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -45,7 +46,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     private void goBack() {
-        String user = pref.getString("user","");
+        String user = pref.getString("user", "");
         switch (user) {
             case "Admin":
                 pref.edit().putBoolean("logged", true).apply();

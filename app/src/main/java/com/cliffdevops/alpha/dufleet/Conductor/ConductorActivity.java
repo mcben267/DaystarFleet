@@ -1,18 +1,21 @@
 package com.cliffdevops.alpha.dufleet.Conductor;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.cliffdevops.alpha.dufleet.Common.AboutActivity;
 import com.cliffdevops.alpha.dufleet.Common.HelpActivity;
 import com.cliffdevops.alpha.dufleet.Common.LoginActivity;
+import com.cliffdevops.alpha.dufleet.Common.ParcelActivity;
 import com.cliffdevops.alpha.dufleet.Common.ProfileActivity;
 import com.cliffdevops.alpha.dufleet.R;
 
@@ -26,11 +29,19 @@ public class ConductorActivity extends AppCompatActivity {
         pref = getSharedPreferences("login", MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        CardView revenue = findViewById(R.id.btnRevenue);
+        CardView parcels = findViewById(R.id.btnParcels);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-
+        parcels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ConductorActivity.this, ParcelActivity.class));
+                finish();
+            }
+        });
 
     }
 

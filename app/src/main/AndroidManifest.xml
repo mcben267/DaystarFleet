@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Manager.OilsActivity"
-            android:parentActivityName=".Manager.DashboardActivity"/>
+        <activity android:name=".Common.ParcelActivity"></activity>
+        <activity
+            android:name=".Manager.OilsActivity"
+            android:parentActivityName=".Manager.DashboardActivity" />
         <activity android:name=".Manager.TodoActivity" />
         <activity android:name=".Manager.RevenueActivity" />
         <activity android:name=".Manager.BookingActivity" />
