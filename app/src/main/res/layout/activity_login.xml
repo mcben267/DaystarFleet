@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Common.LoginActivity">
+    tools:context="View.Common.LoginActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -43,7 +43,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Staff ID"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/txtPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,11 +63,11 @@
 
     <Button
         android:id="@+id/btnlogin"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/button_background"
-        android:text="Confirm"
+        android:text="Login"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
