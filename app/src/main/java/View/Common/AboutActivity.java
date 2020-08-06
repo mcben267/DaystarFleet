@@ -17,6 +17,7 @@ import View.Manager.DashboardActivity;
 import View.Reception.ReceptionActivity;
 
 public class AboutActivity extends AppCompatActivity {
+
     private SharedPreferences pref;
 
     @Override
