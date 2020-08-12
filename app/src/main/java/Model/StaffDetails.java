@@ -1,14 +1,14 @@
 package Model;
 
-public class StaffItem {
+public class StaffDetails {
 
     private String profilePic, name, staff_id, role, mobile, email, tax_pin, national_id,
             license, insuranceStatus, insurancePolicy, bloodGroup,
             medicalCondition;
 
-    public StaffItem(String profilePic, String name, String staff_id, String role, String mobile, String email,
-                     String tax_pin, String national_id, String license, String insuranceStatus,
-                     String insurancePolicy, String bloodGroup, String medicalCondition) {
+    public StaffDetails(String profilePic, String name, String staff_id, String role, String mobile, String email,
+                        String tax_pin, String national_id, String license, String insuranceStatus,
+                        String insurancePolicy, String bloodGroup, String medicalCondition) {
 
         this.profilePic = profilePic;
         this.name = name;

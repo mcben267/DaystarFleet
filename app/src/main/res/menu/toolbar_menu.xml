@@ -15,10 +15,6 @@
         android:title="About" />
 
     <item
-        android:id="@+id/btnHelp"
-        android:title="Help" />
-
-    <item
         android:id="@+id/btnLogout"
         android:icon="@drawable/ic_exit"
         android:title="Log Out" />

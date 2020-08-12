@@ -22,7 +22,6 @@ import java.util.Objects;
 
 import Controller.DutyListAdapter;
 import View.Common.AboutActivity;
-import View.Common.HelpActivity;
 import View.Common.LoginActivity;
 import View.Common.ProfileActivity;
 
@@ -97,12 +96,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btnAbout:
                 startActivity(new Intent(getApplicationContext(), AboutActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-                break;
-
-            case R.id.btnHelp:
-                startActivity(new Intent(getApplicationContext(), HelpActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
                 break;

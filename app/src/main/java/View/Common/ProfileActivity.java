@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
         ImageView back = findViewById(R.id.btnBack);
         EditText user_name = findViewById(R.id.txtName);
         EditText user_email = findViewById(R.id.txtStaffEmail);
-        EditText user_mobile = findViewById(R.id.txtMobile);
+        EditText user_mobile = findViewById(R.id.txtContactMobile);
         oldPassword = findViewById(R.id.txtOldPassword);
         newPassword = findViewById(R.id.txtNewPassword);
         confirmPassword = findViewById(R.id.txtConfirmNewPassword);

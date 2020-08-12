@@ -73,6 +73,7 @@ public class ParcelActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 finish();
                 break;
+
             case "Manager":
                 pref.edit().putBoolean("logged", true).apply();
                 startActivity(new Intent(getApplicationContext(), DashboardActivity.class));

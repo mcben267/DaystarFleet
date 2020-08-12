@@ -29,7 +29,6 @@
         <activity android:name="View.Manager.ReportsActivity" />
         <activity android:name="View.Common.AdminActivity" />
         <activity android:name="View.Manager.Maintenance" />
-        <activity android:name="View.Common.HelpActivity" />
         <activity android:name="View.Common.AboutActivity" />
         <activity android:name="View.Common.ProfileActivity" />
         <activity android:name="View.Reception.ReceptionActivity" />

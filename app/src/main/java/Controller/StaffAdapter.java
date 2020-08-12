@@ -17,14 +17,14 @@ import com.cliffdevops.alpha.dufleet.R;
 
 import java.util.List;
 
-import Model.StaffItem;
+import Model.StaffDetails;
 
 public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHolder> {
-    private List<StaffItem> StaffList;
+    private List<StaffDetails> StaffList;
     private OnStaffListener OnStaffListener;
     private Context context;
 
-    public StaffAdapter(List<StaffItem> StaffList, StaffAdapter.OnStaffListener onStaffListener) {
+    public StaffAdapter(List<StaffDetails> StaffList, StaffAdapter.OnStaffListener onStaffListener) {
         this.StaffList = StaffList;
         this.OnStaffListener = onStaffListener;
     }
@@ -58,7 +58,7 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
 
         @Override
         public void onClick(View view) {
-            final StaffItem item = StaffList.get(getAdapterPosition());
+            final StaffDetails item = StaffList.get(getAdapterPosition());
             mOnStaffListener.onNoteClick(item.getName());
 
             ImageView viewDetails = view.findViewById(R.id.viewMore);
@@ -74,10 +74,11 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
                 viewDetails.setImageResource(R.drawable.ic_arrow_down);
                 //.beginDelayedTransition(constraintLayout, new AutoTransition());
                 constraintLayout.setVisibility(View.GONE);
+
             }
 
-
         }
+
     }
 
     @NonNull
@@ -90,7 +91,7 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
 
     @Override
     public void onBindViewHolder(@NonNull StaffViewHolder holder, int position) {
-        final StaffItem item = StaffList.get(position);
+        final StaffDetails item = StaffList.get(position);
         holder.name.setText(item.getName());
         holder.staff_id.setText(item.getStaff_id());
         holder.role.setText(item.getRole());

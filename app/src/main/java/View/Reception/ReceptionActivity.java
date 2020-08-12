@@ -14,13 +14,12 @@ import androidx.appcompat.widget.Toolbar;
 import com.cliffdevops.alpha.dufleet.R;
 
 import View.Common.AboutActivity;
-import View.Common.HelpActivity;
 import View.Common.LoginActivity;
 import View.Common.ProfileActivity;
 
 public class ReceptionActivity extends AppCompatActivity {
-    private SharedPreferences pref;
 
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +53,9 @@ public class ReceptionActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
                 break;
+
             case R.id.btnAbout:
                 i = new Intent(this, AboutActivity.class);
-                startActivity(i);
-                finish();
-                break;
-
-            case R.id.btnHelp:
-                i = new Intent(this, HelpActivity.class);
                 startActivity(i);
                 finish();
                 break;
@@ -73,8 +67,6 @@ public class ReceptionActivity extends AppCompatActivity {
                 finish();
                 break;
 
-            default:
-                break;
         }
 
         return super.onOptionsItemSelected(item);

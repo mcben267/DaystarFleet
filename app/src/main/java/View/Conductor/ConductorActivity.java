@@ -16,7 +16,6 @@ import androidx.cardview.widget.CardView;
 import com.cliffdevops.alpha.dufleet.R;
 
 import View.Common.AboutActivity;
-import View.Common.HelpActivity;
 import View.Common.LoginActivity;
 import View.Common.ParcelActivity;
 import View.Common.ProfileActivity;
@@ -74,14 +73,9 @@ public class ConductorActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
                 break;
+
             case R.id.btnAbout:
                 i = new Intent(this, AboutActivity.class);
-                startActivity(i);
-                finish();
-                break;
-
-            case R.id.btnHelp:
-                i = new Intent(this, HelpActivity.class);
                 startActivity(i);
                 finish();
                 break;
@@ -93,8 +87,6 @@ public class ConductorActivity extends AppCompatActivity {
                 finish();
                 break;
 
-            default:
-                break;
         }
 
         return super.onOptionsItemSelected(item);

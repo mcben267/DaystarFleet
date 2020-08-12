@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/Gray"
+            android:elevation="5dp"
             android:minHeight="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -93,7 +94,7 @@
                                 <ImageView
                                     android:layout_width="60dp"
                                     android:layout_height="55dp"
-                                    app:srcCompat="@drawable/ic_list" />
+                                    android:src="@drawable/ic_list" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -123,7 +124,7 @@
                                 <ImageView
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
-                                    app:srcCompat="@drawable/ic_event" />
+                                    android:src="@drawable/ic_event" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -154,7 +155,7 @@
                                 <ImageView
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
-                                    app:srcCompat="@drawable/ic_money" />
+                                    android:src="@drawable/ic_money" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -184,7 +185,7 @@
                                 <ImageView
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
-                                    app:srcCompat="@drawable/ic_fuel" />
+                                    android:src="@drawable/ic_fuel" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -214,7 +215,7 @@
                                 <ImageView
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
-                                    app:srcCompat="@drawable/ic_settings" />
+                                    android:src="@drawable/ic_settings" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -244,7 +245,7 @@
                                 <ImageView
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
-                                    app:srcCompat="@drawable/ic_commute" />
+                                    android:src="@drawable/ic_commute" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -274,7 +275,7 @@
                                 <ImageView
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
-                                    app:srcCompat="@drawable/ic_staff" />
+                                    android:src="@drawable/ic_staff" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -304,7 +305,7 @@
                                 <ImageView
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
-                                    app:srcCompat="@drawable/ic_report" />
+                                    android:src="@drawable/ic_report" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -334,7 +335,7 @@
                                 <ImageView
                                     android:layout_width="55dp"
                                     android:layout_height="55dp"
-                                    app:srcCompat="@drawable/ic_contacts" />
+                                    android:src="@drawable/ic_contacts" />
 
                                 <TextView
                                     android:layout_width="wrap_content"

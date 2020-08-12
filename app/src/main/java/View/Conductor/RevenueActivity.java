@@ -12,8 +12,6 @@ import com.cliffdevops.alpha.dufleet.R;
 
 import java.util.Objects;
 
-import View.Manager.DashboardActivity;
-
 public class RevenueActivity extends AppCompatActivity {
 
     @Override
@@ -24,7 +22,6 @@ public class RevenueActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         ImageView back = findViewById(R.id.btnBack);
 
-        setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(this.getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -45,7 +42,7 @@ public class RevenueActivity extends AppCompatActivity {
     }
 
     private void goBack() {
-        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+        startActivity(new Intent(getApplicationContext(), ConductorActivity.class));
         overridePendingTransition(0, 0);
         finish();
     }

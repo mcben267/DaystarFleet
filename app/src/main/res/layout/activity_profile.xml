@@ -132,7 +132,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/txtStaffEmail" />
 
                     <EditText
-                        android:id="@+id/txtMobile"
+                        android:id="@+id/txtContactMobile"
                         android:layout_width="350dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"

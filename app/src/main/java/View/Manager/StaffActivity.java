@@ -33,13 +33,13 @@ import java.util.List;
 import java.util.Objects;
 
 import Controller.StaffAdapter;
-import Model.StaffItem;
+import Model.StaffDetails;
 
 public class StaffActivity extends AppCompatActivity implements StaffAdapter.OnStaffListener {
 
     private StaffAdapter mAdapter;
     private RecyclerView recyclerView;
-    private List<StaffItem> StaffList = new ArrayList<>();
+    private List<StaffDetails> StaffList = new ArrayList<>();
     private ProgressBar progressBar;
 
     @Override
@@ -80,7 +80,7 @@ public class StaffActivity extends AppCompatActivity implements StaffAdapter.OnS
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_staff, menu);
+        getMenuInflater().inflate(R.menu.toolbar_refresh, menu);
         return true;
     }
 
@@ -104,7 +104,7 @@ public class StaffActivity extends AppCompatActivity implements StaffAdapter.OnS
         mAdapter = new StaffAdapter(StaffList, this);
         recyclerView.setAdapter(mAdapter);
 
-        getStaff();
+        getStaffDetails();
 
     }
 
@@ -113,7 +113,7 @@ public class StaffActivity extends AppCompatActivity implements StaffAdapter.OnS
             @Override
             public void run() {
                 Toast.makeText(StaffActivity.this,
-                        Text, Toast.LENGTH_LONG).show();
+                        Text, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -123,7 +123,7 @@ public class StaffActivity extends AppCompatActivity implements StaffAdapter.OnS
         showToast(name);
     }
 
-    public void getStaff() {
+    public void getStaffDetails() {
         String URL = "https://myloanapp.000webhostapp.com/DUFleet/dufleet_staff.php";
         StringRequest stringRequest;
 
@@ -141,7 +141,7 @@ public class StaffActivity extends AppCompatActivity implements StaffAdapter.OnS
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject object = array.getJSONObject(i);
 
-                            StaffItem item = new StaffItem(
+                            StaffDetails item = new StaffDetails(
                                     object.getString("profile_pic"),
                                     object.getString("name") + " " +
                                             object.getString("surname"),
