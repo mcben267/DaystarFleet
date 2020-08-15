@@ -146,12 +146,11 @@ public class RevenueActivity extends AppCompatActivity implements RevenueAdapter
     }
 
     public void getRevenueDetails() {
+        String url = "https://myloanapp.000webhostapp.com/DUFleet/dufleet_revenue.php";
         StringRequest stringRequest;
 
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://myloanapp.000webhostapp.com/DUFleet/dufleet_revenue.php";
-
         stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override

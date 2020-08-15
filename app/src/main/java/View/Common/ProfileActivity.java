@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,9 +48,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         ImageView back = findViewById(R.id.btnBack);
-        EditText user_name = findViewById(R.id.txtName);
-        EditText user_email = findViewById(R.id.txtStaffEmail);
-        EditText user_mobile = findViewById(R.id.txtContactMobile);
+        TextView user_name = findViewById(R.id.txtName);
+        TextView user_email = findViewById(R.id.txtStaffEmail);
+        TextView user_mobile = findViewById(R.id.txtContactMobile);
         oldPassword = findViewById(R.id.txtOldPassword);
         newPassword = findViewById(R.id.txtNewPassword);
         confirmPassword = findViewById(R.id.txtConfirmNewPassword);

@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/belgrano"
             android:text="Fleet"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,17 +53,28 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/belgrano"
-            android:text="Conductor"
+            android:text="Driver"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
         <TextView
+            android:id="@+id/textView45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/belgrano"
+            android:text="Station"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+        <TextView
             android:id="@+id/txtFleet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/belgrano"
             android:text="TextView"
             android:textStyle="bold"
@@ -74,7 +85,7 @@
             android:id="@+id/txtDriver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/belgrano"
@@ -82,14 +93,25 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView37"
-            app:layout_constraintTop_toBottomOf="@+id/txtDate"
-            app:layout_constraintVertical_bias="0.893" />
+            app:layout_constraintTop_toBottomOf="@+id/txtDate" />
+
+        <TextView
+            android:id="@+id/txtAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/belgrano"
+            android:text="txtAmount"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toBottomOf="@+id/txtStation" />
 
         <TextView
             android:id="@+id/txtDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="51dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/belgrano"
             android:text="TextView"
@@ -98,39 +120,17 @@
             app:layout_constraintTop_toBottomOf="@+id/txtAmount" />
 
         <TextView
-            android:id="@+id/txtAmount"
+            android:id="@+id/txtStation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/belgrano"
-            android:text="TextView"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/textView35"
-            app:layout_constraintTop_toBottomOf="@+id/txtRef" />
-
-        <TextView
-            android:id="@+id/textView45"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/belgrano"
-            android:text="Mpesa-Ref"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView33" />
-
-        <TextView
-            android:id="@+id/txtRef"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/belgrano"
             android:text="TextView"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/textView45"
             app:layout_constraintTop_toBottomOf="@+id/txtFleet" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

@@ -23,6 +23,7 @@ import java.util.Objects;
 import Controller.DutyListAdapter;
 import View.Common.AboutActivity;
 import View.Common.LoginActivity;
+import View.Common.ParcelActivity;
 import View.Common.ProfileActivity;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
@@ -118,7 +119,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnHome1:
-                startActivity(new Intent(getApplicationContext(), TodoActivity.class));
+                startActivity(new Intent(getApplicationContext(), ParcelActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
                 break;
