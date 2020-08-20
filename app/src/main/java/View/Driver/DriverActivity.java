@@ -7,24 +7,47 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.cliffdevops.alpha.dufleet.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import Controller.TaskAdapter;
+import Model.TaskDetails;
 import View.Common.AboutActivity;
 import View.Common.LoginActivity;
 import View.Common.ParcelActivity;
 import View.Common.ProfileActivity;
 
-public class DriverActivity extends AppCompatActivity {
+public class DriverActivity extends AppCompatActivity implements TaskAdapter.OnTaskClickListener {
+
     private SharedPreferences pref;
+    private ProgressBar progressBar;
+    private TaskAdapter mAdapter;
+    private RecyclerView recyclerView;
+    private List<TaskDetails> TaskList = new ArrayList<>();
 
 
     @SuppressLint("SetTextI18n")
@@ -33,19 +56,21 @@ public class DriverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_dashboad);
         pref = getSharedPreferences("login", MODE_PRIVATE);
-        TextView currentUser = findViewById(R.id.txtUser);
 
+        TextView currentUser = findViewById(R.id.txtUser);
         Toolbar toolbar = findViewById(R.id.toolbar);
         CardView trip = findViewById(R.id.btnTrip);
         CardView parcels = findViewById(R.id.btnParcels);
         CardView mileage = findViewById(R.id.btMileage);
-        CardView todo_list = findViewById(R.id.btnTodo);
+        recyclerView = findViewById(R.id.TodoListView);
 
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         currentUser.setText("Welcome " + pref.getString("surname", "Null"));
+
+        intiRecycleView();
 
         trip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +133,81 @@ public class DriverActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showToast(final String Text) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(DriverActivity.this,
+                        Text, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void intiRecycleView() {
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(null);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        mAdapter = new TaskAdapter(TaskList, this);
+        recyclerView.setAdapter(mAdapter);
+
+        getTasksDetails();
+
+    }
+
+    public void getTasksDetails() {
+        String url = "https://myloanapp.000webhostapp.com/DUFleet/dufleet_tasks.php";
+        StringRequest stringRequest;
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            if (!response.equals("error")) {
+                                JSONArray array = new JSONArray(response);
+
+                                for (int i = 0; i < array.length(); i++) {
+                                    JSONObject object = array.getJSONObject(i);
+
+                                    TaskDetails item = new TaskDetails(
+
+                                            object.getString("task_id"),
+                                            object.getString("title"),
+                                            object.getString("status"),
+                                            object.getString("details"),
+                                            object.getString("timestamp")
+                                    );
+
+                                    TaskList.add(item);
+                                    mAdapter.notifyDataSetChanged();
+
+                                }
+
+                            }
+
+                        } catch (JSONException ex) {
+                            ex.printStackTrace();
+                            showToast(ex.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                showToast("Error: Request Failed");
+            }
+        });
+
+        queue.add(stringRequest);
+
+    }
+
+    @Override
+    public void onItemClick(String name) {
+
     }
 
 }

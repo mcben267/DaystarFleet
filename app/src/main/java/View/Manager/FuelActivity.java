@@ -1,7 +1,6 @@
 package View.Manager;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -38,7 +37,6 @@ import Model.FuelDetails;
 
 public class FuelActivity extends AppCompatActivity implements FuelAdapter.OnFuelListener {
 
-    private SharedPreferences pref;
     private ProgressBar progressBar;
     private FuelAdapter mAdapter;
     private RecyclerView recyclerView;
