@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,18 +33,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_manager_dashboard);
         pref = getSharedPreferences("login", MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView currentUser = findViewById(R.id.txtUser);
-
-        this.setSupportActionBar(toolbar);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(this.getSupportActionBar()).setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        currentUser.setText("Welcome " + pref.getString("surname", "Null"));
 
         //defining Card view Buttons
         CardView btnHome1 = findViewById(R.id.btnHome1);
@@ -57,6 +48,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         CardView btnHome7 = findViewById(R.id.btnHome7);
         CardView btnHome8 = findViewById(R.id.btnHome8);
         CardView btnHome9 = findViewById(R.id.btnHome9);
+
+        //toolbar
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(this.getSupportActionBar()).setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //onclick listener
         btnHome1.setOnClickListener(this);

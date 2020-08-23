@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,7 +42,6 @@ import View.Common.ProfileActivity;
 public class DriverActivity extends AppCompatActivity implements TaskAdapter.OnTaskClickListener {
 
     private SharedPreferences pref;
-    private ProgressBar progressBar;
     private TaskAdapter mAdapter;
     private RecyclerView recyclerView;
     private List<TaskDetails> TaskList = new ArrayList<>();
@@ -57,18 +54,15 @@ public class DriverActivity extends AppCompatActivity implements TaskAdapter.OnT
         setContentView(R.layout.activity_driver_dashboad);
         pref = getSharedPreferences("login", MODE_PRIVATE);
 
-        TextView currentUser = findViewById(R.id.txtUser);
         Toolbar toolbar = findViewById(R.id.toolbar);
         CardView trip = findViewById(R.id.btnTrip);
         CardView parcels = findViewById(R.id.btnParcels);
-        CardView mileage = findViewById(R.id.btMileage);
+        CardView fuel = findViewById(R.id.btMileage);
         recyclerView = findViewById(R.id.TodoListView);
 
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-
-        currentUser.setText("Welcome " + pref.getString("surname", "Null"));
 
         intiRecycleView();
 
@@ -90,10 +84,10 @@ public class DriverActivity extends AppCompatActivity implements TaskAdapter.OnT
             }
         });
 
-        mileage.setOnClickListener(new View.OnClickListener() {
+        fuel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DriverActivity.this, MileageActivity.class));
+                startActivity(new Intent(DriverActivity.this, LubricationActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
             }

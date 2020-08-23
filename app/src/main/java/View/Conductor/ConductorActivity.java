@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -53,7 +52,6 @@ public class ConductorActivity extends AppCompatActivity implements TaskAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conductor_dashboad);
         pref = getSharedPreferences("login", MODE_PRIVATE);
-        TextView currentUser = findViewById(R.id.txtUser);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         CardView revenue = findViewById(R.id.btnRevenue);
@@ -63,8 +61,6 @@ public class ConductorActivity extends AppCompatActivity implements TaskAdapter.
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-
-        currentUser.setText("Welcome " + pref.getString("surname", "Null"));
 
         intiRecycleView();
 

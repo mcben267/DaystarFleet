@@ -69,11 +69,16 @@ public class LoginActivity extends AppCompatActivity {
                 String id = userID.getText().toString().trim();
                 String password = userPassword.getText().toString().trim();
 
-                if (isOnline() && validateInputs().equals(true)) {
-                    Login(id, password);
-                } else {
-                    showToast("Internet connection require");
+                if (validateInputs().equals(true)) {
+
+                    if (isOnline()) {
+                        Login(id, password);
+                    } else {
+                        showToast("Internet connection required");
+                    }
+
                 }
+
             }
         });
 
