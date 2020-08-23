@@ -1,12 +1,12 @@
 package View.Conductor;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import Controller.TaskAdapter;
 import Model.TaskDetails;
@@ -42,11 +43,11 @@ import View.Common.ProfileActivity;
 public class ConductorActivity extends AppCompatActivity implements TaskAdapter.OnTaskClickListener {
 
     private SharedPreferences pref;
-    private ProgressBar progressBar;
     private TaskAdapter mAdapter;
     private RecyclerView recyclerView;
     private List<TaskDetails> TaskList = new ArrayList<>();
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,7 @@ public class ConductorActivity extends AppCompatActivity implements TaskAdapter.
         recyclerView = findViewById(R.id.TodoListView);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         currentUser.setText("Welcome " + pref.getString("surname", "Null"));

@@ -216,7 +216,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @SuppressLint("InflateParams")
     public void resetInput() {
-        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        final String emailPattern;
+        emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.resetpassword_dialog, null);
 
@@ -239,7 +240,7 @@ public class LoginActivity extends AppCompatActivity {
                         String email = mEmail.getText().toString().trim();
                         String token = randomCode().toUpperCase();
 
-                        Log.d("Test",token);
+                        Log.d("Test", token);
 
                         if (isOnline()) {
                             rest_progressBar.setVisibility(View.VISIBLE);
@@ -270,8 +271,6 @@ public class LoginActivity extends AppCompatActivity {
         stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-                Log.d("Test", response);
 
                 try {
                     JSONObject object = new JSONObject(response);

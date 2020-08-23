@@ -10,10 +10,10 @@
     <!--    android:icon="@drawable/ic_account"-->
     <!--    app:showAsAction="ifRoom|withText"-->
 
-    <item
-        android:id="@+id/btnSOS"
-        android:title="SOS"
-        app:showAsAction="ifRoom|withText" />
+    <!--    <item-->
+    <!--        android:id="@+id/btnSOS"-->
+    <!--        android:title="SOS"-->
+    <!--        app:showAsAction="ifRoom|withText" />-->
 
     <item
         android:id="@+id/btnAbout"

@@ -38,29 +38,34 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/revenueView"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_height="0dp"
         android:layout_margin="5dp"
-        app:cardElevation="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnSendRvenue"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
                 android:background="@drawable/button_background"
                 android:text="Submit"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtRevenuMpesaRef" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -70,6 +75,7 @@
                 android:layout_marginTop="30dp"
                 android:text="Bus Registration"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,9 +84,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="25dp"
                 android:text="Amount"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -89,42 +96,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:text="M-pesa Reference"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:inputType="textPersonName"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextNumberDecimal"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtRevenueAmount"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="10dp"
                 android:ems="10"
                 android:inputType="numberDecimal"
                 app:layout_constraintStart_toEndOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/txtRevenuMpesaRef"
                 android:layout_width="355dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="2dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPersonName|textCapSentences|textCapWords"
+                android:maxLength="15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -136,10 +143,11 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/button2"
+                app:layout_constraintBottom_toTopOf="@+id/btnSendRvenue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+                app:layout_constraintTop_toBottomOf="@+id/txtRevenuMpesaRef" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
