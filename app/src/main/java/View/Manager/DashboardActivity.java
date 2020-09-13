@@ -97,6 +97,18 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 finish();
                 break;
 
+            case R.id.btnNewFleet:
+                startActivity(new Intent(getApplicationContext(), AddfleetActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                break;
+
+            case R.id.btnNewUser:
+//                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+//                overridePendingTransition(0, 0);
+//                finish();
+                break;
+
             case R.id.btnLogout:
                 pref.edit().putBoolean("logged", false).apply();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));

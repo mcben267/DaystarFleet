@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="View.Driver.LubricationActivity"></activity>
+        <activity android:name="View.Manager.AddfleetActivity"></activity>
+        <activity android:name="View.Driver.LubricationActivity" />
         <activity android:name="View.Common.ParcelDetailsActivity" />
         <activity android:name="View.Driver.TripActivity" />
         <activity android:name="View.Driver.MileageActivity" />

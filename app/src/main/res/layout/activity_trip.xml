@@ -207,18 +207,18 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView64" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName3"
+                            android:id="@+id/txtDestination"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="50dp"
                             android:layout_marginTop="4dp"
                             android:ems="10"
-                            android:inputType="textPersonName"
+                            android:inputType="textPersonName|textCapWords"
                             app:layout_constraintStart_toEndOf="@+id/textView43"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName"
+                            android:id="@+id/txtDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="95dp"
@@ -226,7 +226,7 @@
                             android:ems="10"
                             android:inputType="date|textPersonName|textPostalAddress"
                             app:layout_constraintStart_toEndOf="@+id/textView50"
-                            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+                            app:layout_constraintTop_toBottomOf="@+id/txtDestination" />
 
                         <Spinner
                             android:id="@+id/spinner"
@@ -235,7 +235,7 @@
                             android:layout_marginStart="65dp"
                             android:layout_marginTop="2dp"
                             app:layout_constraintStart_toEndOf="@+id/textView54"
-                            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                            app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
                         <EditText
                             android:id="@+id/editTextTextPersonName4"
@@ -255,7 +255,7 @@
                             android:layout_marginStart="30dp"
                             android:layout_marginTop="2dp"
                             android:ems="10"
-                            android:inputType="number|textPersonName|textEmailAddress"
+                            android:inputType="number"
                             app:layout_constraintStart_toEndOf="@+id/textView58"
                             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
@@ -266,7 +266,7 @@
                             android:layout_marginStart="36dp"
                             android:layout_marginTop="2dp"
                             android:ems="10"
-                            android:inputType="number|textPersonName"
+                            android:inputType="number"
                             app:layout_constraintStart_toEndOf="@+id/textView60"
                             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
 
@@ -288,7 +288,7 @@
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="2dp"
                             android:ems="10"
-                            android:inputType="textPersonName|textPhonetic|phone"
+                            android:inputType="textPhonetic|phone"
                             app:layout_constraintStart_toEndOf="@+id/textView63"
                             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
 
@@ -299,7 +299,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="2dp"
                             android:ems="10"
-                            android:inputType="textWebEmailAddress|textPersonName"
+                            android:inputType="textWebEmailAddress"
                             app:layout_constraintStart_toEndOf="@+id/textView64"
                             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
 
@@ -310,7 +310,7 @@
                             android:layout_marginStart="54dp"
                             android:layout_marginTop="2dp"
                             android:ems="10"
-                            android:inputType="textPersonName"
+                            android:inputType="textCapWords"
                             app:layout_constraintStart_toEndOf="@+id/textView65"
                             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
                     </androidx.constraintlayout.widget.ConstraintLayout>

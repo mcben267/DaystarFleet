@@ -33,7 +33,6 @@ public class LubricationActivity extends AppCompatActivity {
         fuelView.setVisibility(View.GONE);
 
         setSupportActionBar(toolbar);
-        setSupportActionBar(toolbar);
         Objects.requireNonNull(this.getSupportActionBar()).setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

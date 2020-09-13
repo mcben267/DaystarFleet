@@ -15,6 +15,14 @@
         android:title="About" />
 
     <item
+        android:id="@+id/btnNewFleet"
+        android:title="Add Fleet" />
+
+    <item
+        android:id="@+id/btnNewUser"
+        android:title="New User" />
+
+    <item
         android:id="@+id/btnLogout"
         android:icon="@drawable/ic_exit"
         android:title="Log Out" />
