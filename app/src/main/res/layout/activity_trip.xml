@@ -61,31 +61,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <Button
-                            android:id="@+id/btnSendRvenue"
-                            android:layout_width="150dp"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/button_background"
-                            android:text="Submit"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
-
-                        <ProgressBar
-                            android:id="@+id/progressBar"
-                            style="?android:attr/progressBarStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:layout_marginBottom="5dp"
-                            android:visibility="gone"
-                            app:layout_constraintBottom_toTopOf="@+id/btnSendRvenue"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-
                         <TextView
                             android:id="@+id/textView43"
                             android:layout_width="wrap_content"
@@ -238,7 +213,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName4"
+                            android:id="@+id/txtpurpose"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="72dp"
@@ -249,7 +224,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName5"
+                            android:id="@+id/txtmileage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="30dp"
@@ -257,10 +232,10 @@
                             android:ems="10"
                             android:inputType="number"
                             app:layout_constraintStart_toEndOf="@+id/textView58"
-                            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+                            app:layout_constraintTop_toBottomOf="@+id/txtpurpose" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName6"
+                            android:id="@+id/txtMileageAfter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="36dp"
@@ -268,10 +243,10 @@
                             android:ems="10"
                             android:inputType="number"
                             app:layout_constraintStart_toEndOf="@+id/textView60"
-                            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+                            app:layout_constraintTop_toBottomOf="@+id/txtmileage" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName7"
+                            android:id="@+id/txtpassangerName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
@@ -279,10 +254,10 @@
                             android:ems="10"
                             android:inputType="textPersonName"
                             app:layout_constraintStart_toEndOf="@+id/textView61"
-                            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+                            app:layout_constraintTop_toBottomOf="@+id/txtMileageAfter" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName8"
+                            android:id="@+id/txtpassContact"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
@@ -290,10 +265,10 @@
                             android:ems="10"
                             android:inputType="textPhonetic|phone"
                             app:layout_constraintStart_toEndOf="@+id/textView63"
-                            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
+                            app:layout_constraintTop_toBottomOf="@+id/txtpassangerName" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName9"
+                            android:id="@+id/txtpassEmail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="35dp"
@@ -301,10 +276,10 @@
                             android:ems="10"
                             android:inputType="textWebEmailAddress"
                             app:layout_constraintStart_toEndOf="@+id/textView64"
-                            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
+                            app:layout_constraintTop_toBottomOf="@+id/txtpassContact" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName10"
+                            android:id="@+id/txtDepa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="54dp"
@@ -312,7 +287,34 @@
                             android:ems="10"
                             android:inputType="textCapWords"
                             app:layout_constraintStart_toEndOf="@+id/textView65"
-                            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
+                            app:layout_constraintTop_toBottomOf="@+id/txtpassEmail" />
+
+                        <Button
+                            android:id="@+id/btnSubmitTrip"
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/button_background"
+                            android:text="Submit"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toTopOf="@+id/btnSubmitTrip"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtDepa"
+                            app:layout_constraintVertical_bias="0.375" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>

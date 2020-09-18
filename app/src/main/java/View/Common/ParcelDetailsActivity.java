@@ -2,19 +2,34 @@ package View.Common;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.cliffdevops.alpha.dufleet.R;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class ParcelDetailsActivity extends AppCompatActivity {
@@ -22,8 +37,8 @@ public class ParcelDetailsActivity extends AppCompatActivity {
     private String parcel_id;
     private ProgressBar progressBar;
     private Button deliver;
-    private TextView category, status, name, mobile, address, destination, origin;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +48,13 @@ public class ParcelDetailsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         ImageView back = findViewById(R.id.btnBack);
         progressBar = findViewById(R.id.progressBar);
-        category = findViewById(R.id.txtParcelCategory);
-        status = findViewById(R.id.txtParcelStatus);
-        name = findViewById(R.id.txtName_R);
-        mobile = findViewById(R.id.txtMobile_R);
-        address = findViewById(R.id.txtAddress_R);
-        destination = findViewById(R.id.txtDestination_R);
-        origin = findViewById(R.id.txtOrion_R);
+        TextView category = findViewById(R.id.txtParcelCategory);
+        TextView status = findViewById(R.id.txtParcelStatus);
+        TextView name = findViewById(R.id.txtName_R);
+        TextView mobile = findViewById(R.id.txtMobile_R);
+        TextView address = findViewById(R.id.txtAddress_R);
+        TextView destination = findViewById(R.id.txtDestination_R);
+        TextView origin = findViewById(R.id.txtOrion_R);
         deliver = findViewById(R.id.btnDeliver);
 
         setSupportActionBar(toolbar);
@@ -53,6 +68,7 @@ public class ParcelDetailsActivity extends AppCompatActivity {
         });
 
         String user = pref.getString("user", "");
+        final LocalDate currentDate = LocalDate.now();
 
         //Extracting Data from previous activity
         Intent intent = getIntent();
@@ -71,7 +87,6 @@ public class ParcelDetailsActivity extends AppCompatActivity {
 
         getParcelImage(image);
 
-
         if (status.getText().equals("Delivered")) {
             deliver.setVisibility(View.GONE);
         }
@@ -80,6 +95,12 @@ public class ParcelDetailsActivity extends AppCompatActivity {
             deliver.setVisibility(View.GONE);
         }
 
+        deliver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemDelivery(currentDate.toString());
+            }
+        });
     }
 
     @Override
@@ -97,4 +118,70 @@ public class ParcelDetailsActivity extends AppCompatActivity {
         ImageView parcelImage = findViewById(R.id.parcel_Image);
         Picasso.get().load(imageUrl).into(parcelImage);
     }
+
+    public void showToast(final String Text) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(ParcelDetailsActivity.this,
+                        Text, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void itemDelivery(final String systemDate) {
+        String URL = "https://myloanapp.000webhostapp.com/DUFleet/dufleet_delivery.php";
+        StringRequest stringRequest;
+
+        deliver.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+
+        stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject object = new JSONObject(response);
+                    String success = object.getString("success");
+
+                    if (success.equals("1")) {
+                        goBack();
+                        showToast("Successful");
+
+                    } else {
+                        showToast("Failed");
+                        deliver.setVisibility(View.VISIBLE);
+                    }
+                    progressBar.setVisibility(View.GONE);
+
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                    deliver.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    showToast("Request failed");
+                }
+
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        deliver.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        showToast("Error: Check Internet Connection");
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", parcel_id);
+                params.put("date", systemDate);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
 }

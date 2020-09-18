@@ -50,7 +50,7 @@ public class ConductorActivity extends AppCompatActivity implements TaskAdapter.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_conductor_dashboad);
+        setContentView(R.layout.activity_conductor_dashboard);
         pref = getSharedPreferences("login", MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

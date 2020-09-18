@@ -51,7 +51,7 @@ public class DriverActivity extends AppCompatActivity implements TaskAdapter.OnT
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_dashboad);
+        setContentView(R.layout.activity_driver_dashboard);
         pref = getSharedPreferences("login", MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

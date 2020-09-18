@@ -214,7 +214,8 @@ public class ParcelActivity extends AppCompatActivity implements ParcelAdapter.O
     }
 
     @Override
-    public void onItemClick(String id, String category, String status, String name, String mobile, String address, String destination, String origin, String image) {
+    public void onItemClick(String id, String category, String status, String name, String mobile,
+                            String address, String destination, String origin, String image) {
 
         Bundle extras = new Bundle();
         extras.putString("id", id);

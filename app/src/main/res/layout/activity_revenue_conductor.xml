@@ -54,7 +54,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/btnSendRvenue"
+                android:id="@+id/btnSubmitTrip"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
@@ -143,7 +143,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/btnSendRvenue"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmitTrip"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtRevenuMpesaRef" />

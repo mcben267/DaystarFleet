@@ -5,11 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.cliffdevops.alpha.dufleet.R;
 
@@ -28,15 +29,43 @@ public class ReceptionActivity extends AppCompatActivity {
         pref = getSharedPreferences("login", MODE_PRIVATE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView currentUser = findViewById(R.id.txtUser);
+        CardView Btn1 = findViewById(R.id.btnAssignFleet);
+        CardView Btn2 = findViewById(R.id.btnTask);
+        CardView Btn3 = findViewById(R.id.btnParcels);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        currentUser.setText("Welcome " + pref.getString("surname", "Null"));
+        Btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AssignFleetActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        });
+
+        Btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        Btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AddParcelActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        });
+
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

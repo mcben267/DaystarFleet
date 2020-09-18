@@ -60,7 +60,7 @@ public class RevenueActivity extends AppCompatActivity implements Spinner.OnItem
         spinner = findViewById(R.id.spinner);
         amount = findViewById(R.id.txtRevenueAmount);
         mpesaRef = findViewById(R.id.txtRevenuMpesaRef);
-        submit = findViewById(R.id.btnSendRvenue);
+        submit = findViewById(R.id.btnSubmitTrip);
         progressBar = findViewById(R.id.progressBar);
 
         setSupportActionBar(toolbar);
