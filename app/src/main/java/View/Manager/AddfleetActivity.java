@@ -100,7 +100,6 @@ public class AddfleetActivity extends AppCompatActivity {
                 } else {
                     showToast("Image is required");
                 }
-
             }
         });
 

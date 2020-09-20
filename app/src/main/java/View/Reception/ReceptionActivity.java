@@ -49,10 +49,12 @@ public class ReceptionActivity extends AppCompatActivity {
         Btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AssignTaskActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
 
             }
         });
-
 
         Btn3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +65,7 @@ public class ReceptionActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,4 +100,6 @@ public class ReceptionActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

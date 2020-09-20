@@ -18,6 +18,7 @@ public class AssignFleetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign_fleet);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         ImageView back = findViewById(R.id.btnBack);
 
@@ -30,7 +31,6 @@ public class AssignFleetActivity extends AppCompatActivity {
                 goBack();
             }
         });
-
     }
 
     private void goBack() {
