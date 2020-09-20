@@ -44,7 +44,7 @@ public class RevenueActivity extends AppCompatActivity implements Spinner.OnItem
     private SharedPreferences pref;
     private Spinner spinner;
     private String BusRegistration, result;
-    private ArrayList<String> BusReg = new ArrayList<String>();
+    private ArrayList<String> BusReg = new ArrayList<>();
     private EditText amount, mpesaRef;
     private Button submit;
     private ProgressBar progressBar;
@@ -249,6 +249,7 @@ public class RevenueActivity extends AppCompatActivity implements Spinner.OnItem
 
                         startActivity(new Intent(getApplicationContext(), ConductorActivity.class));
                         overridePendingTransition(0, 0);
+                        finish();
 
                     } else {
                         showToast("Error: Failed to save new inputs ");

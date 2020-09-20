@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="View.Reception.AssignTaskActivity"></activity>
+        <activity android:name="View.Manager.NewUserActivity"></activity>
+        <activity android:name="View.Reception.AssignTaskActivity" />
         <activity android:name="View.Reception.AssignFleetActivity" />
         <activity android:name="View.Reception.AddParcelActivity" />
         <activity android:name="View.Manager.AddFleetActivity" />

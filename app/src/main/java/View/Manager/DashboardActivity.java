@@ -104,9 +104,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.btnNewUser:
-//                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
-//                overridePendingTransition(0, 0);
-//                finish();
+                startActivity(new Intent(getApplicationContext(), NewUserActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 break;
 
             case R.id.btnLogout:
