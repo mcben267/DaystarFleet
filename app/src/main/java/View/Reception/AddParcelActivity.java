@@ -3,6 +3,7 @@ package View.Reception;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -18,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -29,18 +31,18 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cliffdevops.alpha.dufleet.R;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import View.Manager.DashboardActivity;
 
 public class AddParcelActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener {
 
@@ -50,10 +52,11 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
     private Uri filePath = null;
     private Button submit;
     private String parcelCategory, staffID;
-    private Spinner category, staff;
+    private Spinner staff;
     private ProgressBar progressBar;
-    private ArrayList<String> staffName = new ArrayList<String>();
-    private EditText sender_name, sender_tel, receiver_name, receiver_tel, origin, dest, description;
+    private ArrayList<String> staffName = new ArrayList<>();
+    private EditText sender_name, sender_tel, receiver_name, receiver_tel, origin, dest,
+            receiver_address;
 
 
     @Override
@@ -65,16 +68,16 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
         ImageView back = findViewById(R.id.btnBack);
         upLoadImage = findViewById(R.id.parcel_image);
         Button uploadButton = findViewById(R.id.btnUploadImage);
-        category = findViewById(R.id.spinner2);
+        Spinner category = findViewById(R.id.spinner2);
         staff = findViewById(R.id.spinner3);
 
         sender_name = findViewById(R.id.txtSender_name);
         sender_tel = findViewById(R.id.txtsender_tel);
         receiver_name = findViewById(R.id.txtReceiver_name);
         receiver_tel = findViewById(R.id.txtReceiver_mobile);
+        receiver_address = findViewById(R.id.txt_address);
         origin = findViewById(R.id.txtorigin);
         dest = findViewById(R.id.txtdestination);
-        description = findViewById(R.id.txtdescription);
         progressBar = findViewById(R.id.progressBar);
         submit = findViewById(R.id.btnSubmitParcel);
 
@@ -88,7 +91,7 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
             }
         });
 
-        category.setAdapter(new ArrayAdapter<String>(AddParcelActivity.this,
+        category.setAdapter(new ArrayAdapter<>(AddParcelActivity.this,
                 android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.category)));
 
         category.setOnItemSelectedListener(this);
@@ -99,11 +102,7 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
-                if (item.equals("Select")) {
-                    parcelCategory = null;
-                } else {
-                    parcelCategory = item;
-                }
+                parcelCategory = item;
             }
 
             @Override
@@ -133,11 +132,26 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
         });
 
         submit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
-                if (validateInputs().equals(true)) {
+                String id = randomCode().toUpperCase();
+                String s_name = sender_name.getText().toString().trim();
+                String s_tel = sender_tel.getText().toString().trim();
+                String r_name = receiver_name.getText().toString().trim();
+                String r_tel = receiver_tel.getText().toString().trim();
+                String r_address = receiver_address.getText().toString().trim();
+                String parcel_origin = origin.getText().toString().trim();
+                String parcel_destination = dest.getText().toString().trim();
 
+                if (validateInputs().equals(true)) {
+                    if (filePath != null) {
+                        addParcel(id, s_name, s_tel, r_name, r_tel, r_address, parcelCategory, getDate(),
+                                parcel_destination, parcel_origin, staffID);
+                    } else {
+                        showToast("Image required");
+                    }
                 }
             }
         });
@@ -150,6 +164,11 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        goBack();
+    }
+
     public void showToast(final String Text) {
         this.runOnUiThread(new Runnable() {
             @Override
@@ -160,9 +179,9 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        goBack();
+    protected String randomCode() {
+        int length = 4;
+        return "P-" + RandomStringUtils.random(length, true, true);
     }
 
     public void chooseImage() {
@@ -170,6 +189,12 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String getDate() {
+        final LocalDate currentDate = LocalDate.now();
+        return currentDate.toString();
     }
 
     @Override
@@ -200,7 +225,8 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
         validateR_tel();
         validateOrigin();
         validateDestination();
-        validateDescription();
+        validateAddress();
+        validateCategory();
 
         return validateS_name().equals(true)
                 && validateR_name().equals(true)
@@ -208,7 +234,17 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
                 && validateR_tel().equals(true)
                 && validateOrigin().equals(true)
                 && validateDestination().equals(true)
-                && validateDescription().equals(true);
+                && validateAddress().equals(true)
+                && validateCategory().equals(true);
+    }
+
+    private Boolean validateCategory() {
+        if (parcelCategory.equals("Select")) {
+            showToast("Select parcel category");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private Boolean validateS_name() {
@@ -283,14 +319,14 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
         }
     }
 
-    private Boolean validateDescription() {
-        String val = description.getEditableText().toString().trim();
+    private Boolean validateAddress() {
+        String val = receiver_address.getEditableText().toString().trim();
 
         if (val.isEmpty()) {
-            description.setError("Required");
+            receiver_address.setError("Required");
             return false;
         } else {
-            description.setError(null);
+            receiver_address.setError(null);
             return true;
         }
     }
@@ -328,7 +364,7 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
                                     String staff_name = id + " " + name;
 
                                     staffName.add(staff_name);
-                                    staff.setAdapter(new ArrayAdapter<String>(AddParcelActivity.this,
+                                    staff.setAdapter(new ArrayAdapter<>(AddParcelActivity.this,
                                             android.R.layout.simple_spinner_dropdown_item, staffName));
                                 }
                             }
@@ -349,10 +385,12 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
 
     }
 
-    public void uploadFleet(final String id, final String type, final String capacity, final String reg,
-                            final String date, final String mileage, final String Chassis) {
+    public void addParcel(final String parcel_id, final String sender_name, final String sender_mobile,
+                          final String receiver_name, final String receiver_mobile, final String receiver_address,
+                          final String parcel_category, final String send_date, final String parcel_destination,
+                          final String parcel_origination, final String staffID) {
 
-        String URL = "https://myloanapp.000webhostapp.com/DUFleet/dufleet_addfleet.php";
+        String URL = "https://myloanapp.000webhostapp.com/DUFleet/dufleet_addparcel.php";
         StringRequest stringRequest;
 
         submit.setVisibility(View.INVISIBLE);
@@ -368,13 +406,14 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
                     String success = object.getString("success");
 
                     if (success.equals("1")) {
-                        showToast("Fleet added");
-                        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                        showToast("Parcel Captured");
+                        startActivity(new Intent(getApplicationContext(), ReceptionActivity.class));
+                        overridePendingTransition(0, 0);
                         finish();
                     } else {
                         submit.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
-                        showToast("upload failed");
+                        showToast("failed");
                     }
 
                 } catch (JSONException ex) {
@@ -398,16 +437,23 @@ public class AddParcelActivity extends AppCompatActivity implements Spinner.OnIt
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                params.put("id", id);
-                params.put("type", type);
-                params.put("capacity", capacity);
-                params.put("reg", reg);
-                params.put("com_date", date);
-                params.put("mileage", mileage);
-                params.put("chassis", Chassis);
+                params.put("parcel_id", parcel_id);
+                params.put("sender_name", sender_name);
+                params.put("sender_mobile", sender_mobile);
+                params.put("receiver_name", receiver_name);
+                params.put("receiver_mobile", receiver_mobile);
+                params.put("receiver_address", receiver_address);
+                params.put("parcel_category", parcel_category);
                 params.put("image", imageToString(bitmap));
+                params.put("send_date", send_date);
+                params.put("parcel_destination", parcel_destination);
+                params.put("parcel_origination", parcel_origination);
+                params.put("staffID", staffID);
 
+                Log.d("Test", "Params >> " + params);
                 return params;
+
+
             }
         };
 
