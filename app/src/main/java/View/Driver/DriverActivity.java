@@ -171,7 +171,7 @@ public class DriverActivity extends AppCompatActivity implements TaskAdapter.OnT
 
                                             object.getString("task_id"),
                                             object.getString("title"),
-                                            object.getString("status"),
+                                            object.getString("task_status"),
                                             object.getString("details"),
                                             object.getString("timestamp")
                                     );

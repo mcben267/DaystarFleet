@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="Parcels"
+            android:text="Parcel"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -99,7 +99,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView76" />
 
                     <EditText
-                        android:id="@+id/txtSenders_name"
+                        android:id="@+id/txtSender_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -110,15 +110,15 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editTextNumber"
+                        android:id="@+id/txtsender_tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:ems="10"
-                        android:inputType="number"
+                        android:inputType="phone"
                         app:layout_constraintStart_toEndOf="@+id/textView77"
-                        app:layout_constraintTop_toBottomOf="@+id/txtSenders_name" />
+                        app:layout_constraintTop_toBottomOf="@+id/txtSender_name" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -309,7 +309,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="26dp"
                         android:layout_marginTop="30dp"
-                        android:text="Message"
+                        android:text="Description"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView86" />
 
@@ -325,7 +325,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/txtorigin" />
 
                     <EditText
-                        android:id="@+id/txtmeassage"
+                        android:id="@+id/txtdescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="22dp"
@@ -358,11 +358,23 @@
                     <Button
                         android:id="@+id/btnSubmitParcel"
                         android:layout_width="200dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="10dp"
                         android:text="Submit"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toTopOf="@+id/btnSubmitParcel"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

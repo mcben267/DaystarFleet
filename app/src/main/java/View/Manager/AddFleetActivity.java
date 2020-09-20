@@ -18,7 +18,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class AddfleetActivity extends AppCompatActivity {
+public class AddFleetActivity extends AppCompatActivity {
 
     private final int PICK_IMAGE_REQUEST = 1;
     private ImageView upLoadImage;
@@ -141,7 +140,7 @@ public class AddfleetActivity extends AppCompatActivity {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(AddfleetActivity.this,
+                Toast.makeText(AddFleetActivity.this,
                         Text, Toast.LENGTH_LONG).show();
             }
         });
@@ -293,10 +292,8 @@ public class AddfleetActivity extends AppCompatActivity {
                     }
                 }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-
-                Log.d("Test", "id " + id + " image" + imageToString(bitmap));
 
                 params.put("id", id);
                 params.put("type", type);

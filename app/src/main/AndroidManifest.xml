@@ -16,7 +16,7 @@
         <activity android:name="View.Reception.AssignTaskActivity"></activity>
         <activity android:name="View.Reception.AssignFleetActivity" />
         <activity android:name="View.Reception.AddParcelActivity" />
-        <activity android:name="View.Manager.AddfleetActivity" />
+        <activity android:name="View.Manager.AddFleetActivity" />
         <activity android:name="View.Driver.LubricationActivity" />
         <activity android:name="View.Common.ParcelDetailsActivity" />
         <activity android:name="View.Driver.TripActivity" />

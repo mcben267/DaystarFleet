@@ -98,7 +98,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.btnNewFleet:
-                startActivity(new Intent(getApplicationContext(), AddfleetActivity.class));
+                startActivity(new Intent(getApplicationContext(), AddFleetActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
                 break;

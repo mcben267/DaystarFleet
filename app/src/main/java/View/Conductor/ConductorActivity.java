@@ -158,7 +158,7 @@ public class ConductorActivity extends AppCompatActivity implements TaskAdapter.
 
                                             object.getString("task_id"),
                                             object.getString("title"),
-                                            object.getString("status"),
+                                            object.getString("task_status"),
                                             object.getString("details"),
                                             object.getString("timestamp")
                                     );

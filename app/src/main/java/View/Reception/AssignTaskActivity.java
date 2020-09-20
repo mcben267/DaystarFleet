@@ -2,12 +2,14 @@ package View.Reception;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -26,7 +28,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class AssignTaskActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener {
@@ -35,6 +40,7 @@ public class AssignTaskActivity extends AppCompatActivity implements Spinner.OnI
     private Spinner priority, staff;
     private String status, staffID;
     private EditText title, message;
+    private ProgressBar progressBar;
     private ArrayList<String> staffName = new ArrayList<String>();
 
     @Override
@@ -48,6 +54,7 @@ public class AssignTaskActivity extends AppCompatActivity implements Spinner.OnI
         priority = findViewById(R.id.spinnerPriority);
         title = findViewById(R.id.txt_title);
         message = findViewById(R.id.txt_message);
+        progressBar = findViewById(R.id.progressBar);
         submit = findViewById(R.id.btnSubmit_task);
 
         setSupportActionBar(toolbar);
@@ -100,8 +107,13 @@ public class AssignTaskActivity extends AppCompatActivity implements Spinner.OnI
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateInputs().equals(true)) {
+                String taskTitle = title.getText().toString().trim();
+                String taskMessage = message.getText().toString().trim();
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                String systemTime = timestamp.toString().substring(0, 19);
 
+                if (validateInputs().equals(true)) {
+                    addTask(staffID, status, taskTitle, taskMessage, systemTime);
                 }
             }
         });
@@ -130,20 +142,31 @@ public class AssignTaskActivity extends AppCompatActivity implements Spinner.OnI
     }
 
     private Boolean validateInputs() {
+        validateStaffId();
         validateStatus();
         validateTitle();
         validateMessage();
 
         return validateStatus().equals(true)
+                && validateStaffId().equals(true)
                 && validateTitle().equals(true)
                 && validateMessage().equals(true);
     }
 
-    private Boolean validateStatus() {
-        if (status != null) {
-            showToast("Priority status required");
+    private Boolean validateStaffId() {
+        if (staffID != null) {
             return true;
         } else {
+            showToast("Select staff");
+            return false;
+        }
+    }
+
+    private Boolean validateStatus() {
+        if (status != null) {
+            return true;
+        } else {
+            showToast("Priority status required");
             return false;
         }
     }
@@ -225,4 +248,69 @@ public class AssignTaskActivity extends AppCompatActivity implements Spinner.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    public void addTask(final String id, final String status, final String title, final String message,
+                        final String timestamp) {
+
+        String URL = "https://myloanapp.000webhostapp.com/DUFleet/dufleet_addtask.php";
+        StringRequest stringRequest;
+
+        submit.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+        stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("Test", response);
+
+                try {
+                    JSONObject object = new JSONObject(response);
+                    String success = object.getString("success");
+
+                    if (success.equals("1")) {
+                        showToast("Task added");
+                        startActivity(new Intent(getApplicationContext(), ReceptionActivity.class));
+                        finish();
+                    } else {
+                        submit.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        showToast("upload failed");
+                    }
+
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                    submit.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    showToast("Error: " + ex.toString());
+                }
+
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        submit.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        showToast("Fatal error " + error.toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("id", id);
+                params.put("status", status);
+                params.put("title", title);
+                params.put("message", message);
+                params.put("timestamp", timestamp);
+
+                Log.d("Test", "Params >> " + params.toString());
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
 }
