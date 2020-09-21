@@ -40,6 +40,7 @@ public class NewUserActivity extends AppCompatActivity implements Spinner.OnItem
         lastname = findViewById(R.id.txt_lastname);
         email = findViewById(R.id.txt_email);
         tel = findViewById(R.id.txt_mobile);
+        submit = findViewById(R.id.btnSubmit_user);
 
         setSupportActionBar(toolbar);
         Objects.requireNonNull(this.getSupportActionBar()).setDisplayShowHomeEnabled(true);
