@@ -237,7 +237,7 @@ public class RevenueActivity extends AppCompatActivity implements Spinner.OnItem
             @Override
             public void onResponse(String response) {
 
-                Log.d("Test", response);
+                //Log.d("Test", response);
 
                 try {
                     JSONObject object = new JSONObject(response);

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -241,7 +240,7 @@ public class LubricationActivity extends AppCompatActivity implements Spinner.On
             @Override
             public void onResponse(String response) {
 
-                Log.d("Test", response);
+                //Log.d("Test", response);
 
                 try {
                     JSONObject object = new JSONObject(response);
@@ -267,7 +266,6 @@ public class LubricationActivity extends AppCompatActivity implements Spinner.On
                     progressBar.setVisibility(View.INVISIBLE);
                     showToast("Error: Fatal error");
                 }
-
             }
         },
                 new Response.ErrorListener() {
