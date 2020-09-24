@@ -1,9 +1,10 @@
 package Model;
 
 public class TaskDetails {
-    String taskId, title, status, details, timestamp;
+    int taskId;
+    String title, status, details, timestamp;
 
-    public TaskDetails(String taskId, String title, String status, String details, String timestamp) {
+    public TaskDetails(int taskId, String title, String status, String details, String timestamp) {
         this.taskId = taskId;
         this.title = title;
         this.status = status;
@@ -11,7 +12,7 @@ public class TaskDetails {
         this.timestamp = timestamp;
     }
 
-    public String getTaskId() {
+    public int getTaskId() {
         return taskId;
     }
 

@@ -1,6 +1,5 @@
 package View.Manager;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,8 +28,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -78,7 +75,6 @@ public class NewUserActivity extends AppCompatActivity implements Spinner.OnItem
             @Override
             public void onClick(View v) {
                 String id = randomCode();
-                String stamp = getDate();
                 String password = randomPassword();
                 String name = firstname.getText().toString().trim();
                 String surname = lastname.getText().toString().trim();
@@ -127,13 +123,6 @@ public class NewUserActivity extends AppCompatActivity implements Spinner.OnItem
     protected String randomPassword() {
         int length = 10;
         return RandomStringUtils.random(length, true, true);
-    }
-
-    private String getDate() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(timestamp);
     }
 
     private Boolean validateInputs() {
@@ -214,7 +203,7 @@ public class NewUserActivity extends AppCompatActivity implements Spinner.OnItem
             @Override
             public void onResponse(String response) {
 
-                Log.d("Test", response);
+               // Log.d("Test", response);
 
                 try {
                     JSONObject object = new JSONObject(response);

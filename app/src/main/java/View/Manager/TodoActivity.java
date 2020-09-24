@@ -119,7 +119,7 @@ public class TodoActivity extends AppCompatActivity implements TaskAdapter.OnTas
 
                                     TaskDetails item = new TaskDetails(
 
-                                            object.getString("task_id"),
+                                            object.getInt("task_id"),
                                             object.getString("title"),
                                             object.getString("status"),
                                             object.getString("details"),

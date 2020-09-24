@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +30,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import Controller.TaskAdapter;
@@ -133,19 +136,21 @@ public class ConductorActivity extends AppCompatActivity implements TaskAdapter.
         mAdapter = new TaskAdapter(TaskList, this);
         recyclerView.setAdapter(mAdapter);
 
-        getTasksDetails();
+        getTasksDetails(pref.getString("user_id", ""));
 
     }
 
-    public void getTasksDetails() {
+    public void getTasksDetails(final String staff_id) {
         String url = "https://myloanapp.000webhostapp.com/DUFleet/dufleet_tasks.php";
         StringRequest stringRequest;
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        stringRequest = new StringRequest(Request.Method.GET, url,
+        stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
+                        Log.d("Test", response);
 
                         try {
                             if (!response.equals("error")) {
@@ -155,8 +160,7 @@ public class ConductorActivity extends AppCompatActivity implements TaskAdapter.
                                     JSONObject object = array.getJSONObject(i);
 
                                     TaskDetails item = new TaskDetails(
-
-                                            object.getString("task_id"),
+                                            object.getInt("task_id"),
                                             object.getString("title"),
                                             object.getString("task_status"),
                                             object.getString("details"),
@@ -165,9 +169,7 @@ public class ConductorActivity extends AppCompatActivity implements TaskAdapter.
 
                                     TaskList.add(item);
                                     mAdapter.notifyDataSetChanged();
-
                                 }
-
                             }
 
                         } catch (JSONException ex) {
@@ -180,10 +182,19 @@ public class ConductorActivity extends AppCompatActivity implements TaskAdapter.
             public void onErrorResponse(VolleyError error) {
                 showToast("Error: Request Failed");
             }
-        });
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
 
-        queue.add(stringRequest);
+                params.put("staff_id", staff_id);
+                return params;
 
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     @Override

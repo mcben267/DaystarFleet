@@ -98,7 +98,6 @@ public class LubricationActivity extends AppCompatActivity implements Spinner.On
                 }
             }
         });
-
     }
 
     @Override
@@ -241,7 +240,6 @@ public class LubricationActivity extends AppCompatActivity implements Spinner.On
             public void onResponse(String response) {
 
                 //Log.d("Test", response);
-
                 try {
                     JSONObject object = new JSONObject(response);
                     String message = object.getString("success");

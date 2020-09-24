@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,8 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,6 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
     private SharedPreferences pref;
     private String UserEmail, Password;
     private Button changePassword;
+    private TextView lblPass;
+    private CardView passView;
     private EditText oldPassword, newPassword, confirmPassword;
 
     @Override
@@ -55,6 +61,9 @@ public class ProfileActivity extends AppCompatActivity {
         newPassword = findViewById(R.id.txtNewPassword);
         confirmPassword = findViewById(R.id.txtConfirmNewPassword);
         changePassword = findViewById(R.id.btnChangePassword);
+        lblPass = findViewById(R.id.lblChangePassword);
+        passView = findViewById(R.id.settingView);
+
         // CheckBox getPushNotification = findViewById(R.id.checkBoxPushNotice);
 
         user_name.setText(pref.getString("name", "NULL"));
@@ -185,6 +194,24 @@ public class ProfileActivity extends AppCompatActivity {
                         Text, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_profile, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.btnChangePass) {
+            lblPass.setVisibility(View.VISIBLE);
+            passView.setVisibility(View.VISIBLE);
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void ChangePassword(final String email, final String oldPassword, final String newPassword) {

@@ -283,7 +283,6 @@ public class AssignTaskActivity extends AppCompatActivity implements Spinner.OnI
                     progressBar.setVisibility(View.GONE);
                     showToast("Error: " + ex.toString());
                 }
-
             }
         },
                 new Response.ErrorListener() {

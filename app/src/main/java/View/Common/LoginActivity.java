@@ -215,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     protected String randomCode() {
-        int length = 5;
+        int length = 8;
         return RandomStringUtils.random(length, true, true);
     }
 
@@ -276,11 +276,13 @@ public class LoginActivity extends AppCompatActivity {
         stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d("Test", response);
 
                 try {
                     JSONObject object = new JSONObject(response);
+                    String success = object.getString("success");
 
-                    if (!response.equals("error")) {
+                    if (success.equals("1")) {
                         String user_id = object.getString("user_id").trim();
                         String user = object.getString("user").trim();
                         String name = object.getString("name").trim();
@@ -308,7 +310,7 @@ public class LoginActivity extends AppCompatActivity {
                     ex.printStackTrace();
                     login.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
-                    showToast("Invalid Login Credentials");
+                    showToast(ex.toString());
                 }
 
             }
